@@ -3,11 +3,14 @@ Debian source package for Drumgizmo
 
 ####To build:
 `mkdir build`
+
 `cd build`
+
 `git clone https://github.com/joulez/drumgizmo`
+
 `cd drumgizmo`
 
-Ensure you have the `build-essential` package installed.
+Ensure you have the `build-essential` package installed. Then:
 
 `dpkg-buildpackage -b -uc`
 
