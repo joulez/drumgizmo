@@ -12,9 +12,7 @@ EXTRA_CONFIGURE_ARGS = \
  --enable-lv2 \
  --disable-vst \
  --without-test \
- --without-debug \
- --disable-input-jackmidi \
- --disable-input-jackaudio 
+ --without-debug 
 
 ifeq ($(DEB_HOST_ARCH_CPU),amd64)
 EXTRA_CONFIGURE_ARGS += --enable-sse
