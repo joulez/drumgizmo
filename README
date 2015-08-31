@@ -1,0 +1,41 @@
+Installation Instructions
+*************************
+
+Compiling and installing the LV2 plugin
+=======================================
+If you extracted the code from a tar-ball skip to the "Configuring" section.
+
+Preparing code from git
+-----------------------
+If you cloned the repository from git, make sure to run the following commands
+in order to obtain the hugin debug code:
+ git submodule init
+ git submodule update
+
+After that you need to run ./autogen.sh
+
+Configuring
+-----------
+Run ./configure --enable-lv2 --prefix=/usr
+Then run 'make && make install' and the plugin should be installed in
+/usr/lib/lv2/drumgizmo.lv2
+If you want to compile only the LV2 parts of the plugin use
+'--disable-editor --disable-cli' as additional parameters to the configure
+script.
+
+The LV2 plugin requires the following dependencies:
+pkg-config >= 0.23
+lv2 >= 1.0
+Xlib >= 1.0
+sndfile >= 1.0.21
+libpng >= 1.2
+pthread (no minimal version specified)
+expat (no minimal version specified)
+
+Be aware that if you are planning on running the LV2 plugin from within one
+of the binary releases of Ardour, you must make sure that drumgizmo is using
+the same version of libpng, pthread and expat as Ardour was compiled with (or
+at least versions matching the ABI), otherwise the plugin will show strange
+behaviour or even crash upon load.
+
+

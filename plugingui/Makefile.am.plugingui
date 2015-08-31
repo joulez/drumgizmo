@@ -1,0 +1,49 @@
+
+puglsources =
+
+PLUGIN_GUI_SOURCES = \
+	$(top_srcdir)/hugin/hugin.c \
+	$(top_srcdir)/hugin/hugin_syslog.c \
+	$(puglsources) \
+	$(top_srcdir)/plugingui/nativewindow_x11.cc \
+	$(top_srcdir)/plugingui/nativewindow_win32.cc \
+	$(top_srcdir)/plugingui/plugingui.cc \
+	$(top_srcdir)/plugingui/label.cc \
+	$(top_srcdir)/plugingui/eventhandler.cc \
+	$(top_srcdir)/plugingui/font.cc \
+	$(top_srcdir)/plugingui/window.cc \
+	$(top_srcdir)/plugingui/widget.cc \
+	$(top_srcdir)/plugingui/colour.cc \
+	$(top_srcdir)/plugingui/painter.cc \
+	$(top_srcdir)/plugingui/button.cc \
+	$(top_srcdir)/plugingui/pixelbuffer.cc \
+	$(top_srcdir)/plugingui/lineedit.cc \
+	$(top_srcdir)/plugingui/led.cc \
+	$(top_srcdir)/plugingui/checkbox.cc \
+	$(top_srcdir)/plugingui/slider.cc \
+	$(top_srcdir)/plugingui/scrollbar.cc \
+	$(top_srcdir)/plugingui/listbox.cc \
+	$(top_srcdir)/plugingui/listboxthin.cc \
+	$(top_srcdir)/plugingui/listboxbasic.cc \
+	$(top_srcdir)/plugingui/knob.cc \
+	$(top_srcdir)/plugingui/filebrowser.cc \
+	$(top_srcdir)/plugingui/directory.cc \
+	$(top_srcdir)/plugingui/pluginconfig.cc \
+	$(top_srcdir)/plugingui/image.cc \
+	$(top_srcdir)/plugingui/combobox.cc \
+	$(top_srcdir)/plugingui/progressbar.cc \
+	$(top_srcdir)/plugingui/verticalline.cc \
+	$(top_srcdir)/plugingui/resource.cc \
+	$(top_srcdir)/plugingui/resource_data.cc \
+	$(top_srcdir)/plugingui/lodepng/lodepng.cpp
+
+PLUGIN_GUI_LIBS = $(GUI_LIBS) $(PTHREAD_LIBS) $(ZLIB_LIBS)
+
+PLUGIN_GUI_CFLAGS = $(GUI_CFLAGS) $(ZLIB_CFLAGS) -I$(top_srcdir)/hugin \
+									-DWITH_HUG_SYSLOG -DWITH_HUG_MUTEX $(PTHREAD_CFLAGS) \
+									-I$(top_srcdir)/pugl/pugl \
+									-DLODEPNG_NO_COMPILE_ENCODER \
+									-DLODEPNG_NO_COMPILE_DISK \
+									-DLODEPNG_NO_COMPILE_ANCILLARY_CHUNKS \
+									-DLODEPNG_NO_COMPILE_ERROR_TEXT \
+									-DLODEPNG_NO_COMPILE_CPP

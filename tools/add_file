@@ -1,0 +1,76 @@
+#!/bin/bash
+PROJECT="DrumGizmo"
+
+function allfile() {
+  echo "/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */" > $1;
+  echo "/***************************************************************************" >> $1;
+  echo " *            $1" >> $1;
+  echo " *" >> $1 ;
+  echo " *  `date`" >> $1;
+  echo -n " *  Copyright " >> $1
+  echo -n `date +%Y | xargs` >> $1
+  if [ "$USER" == "nemo" ];
+  then
+      echo " Jonas Suhr Christensen" >> $1;
+      echo " *  jsc@umbraculum.org" >> $1;
+  fi
+  if [ "$USER" == "deva" ];
+  then
+      echo " Bent Bisballe Nyeng" >> $1;
+      echo " *  deva@aasimon.org" >> $1;
+  fi
+  if [ "$USER" == "senator" ];
+  then
+      echo " Lars Bisballe Jensen" >> $1;
+      echo " *  elsenator@gmail.com" >> $1;
+  fi
+  echo " ****************************************************************************/" >> $1;
+  echo "" >> $1;
+  echo "/*" >> $1;
+  echo " *  This file is part of $PROJECT." >> $1;
+  echo " *" >> $1;
+  echo " *  $PROJECT is free software; you can redistribute it and/or modify" >> $1;
+  echo " *  it under the terms of the GNU General Public License as published by" >> $1;
+  echo " *  the Free Software Foundation; either version 2 of the License, or" >> $1;
+  echo " *  (at your option) any later version." >> $1;
+  echo " *" >> $1;
+  echo " *  $PROJECT is distributed in the hope that it will be useful," >> $1;
+  echo " *  but WITHOUT ANY WARRANTY; without even the implied warranty of" >> $1;
+  echo " *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the" >> $1;
+  echo " *  GNU General Public License for more details." >> $1;
+  echo " *" >> $1;
+  echo " *  You should have received a copy of the GNU General Public License" >> $1;
+  echo " *  along with $PROJECT; if not, write to the Free Software" >> $1;
+  echo " *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA." >> $1;
+  echo " */" >> $1;
+}
+
+function ccfile() {
+  local hf=`echo -n $1 | cut -d'.' -f1`.h;
+  hfile $hf;
+
+  allfile $1;
+  echo -n '#include "' >> $1;
+  echo -n $hf >> $1;
+  echo '"' >> $1;
+  echo '' >> $1;
+}
+
+function hfile() {
+  allfile $1;
+  local hn=`echo $1 | tr 'a-z.' 'A-Z_'`
+  local pr=`echo $PROJECT | tr 'a-z.' 'A-Z_'`
+  echo "#ifndef __${pr}_${hn}__" >> $1;
+  echo "#define __${pr}_${hn}__" >> $1;
+  echo "#endif/*__${pr}_${hn}__*/" >> $1;
+}
+
+if [ "$#" = "1" ]; then
+if [ "CC" = `echo $1 | cut -d'.' -f2 | tr 'a-z' 'A-Z'` ]; then
+  ccfile $1;
+fi;
+if [ "H" = `echo $1 | cut -d'.' -f2 | tr 'a-z' 'A-Z'` ]; then
+  hfile $1;
+fi;
+else echo "Usage: $0 filename";
+fi;

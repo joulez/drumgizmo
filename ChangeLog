@@ -1,0 +1,155 @@
+Version 0.9.8.1-hotfix
+======================
+Released March 16th 2015
+ - Fixed bug where resampling resulted in sample skewing over the output channels
+
+Version 0.9.8
+=============
+Released February 22nd 2015
+ - Fix deprecated autoconf/automake macros. (Nils Tonnätt)
+ - Update LV2 plugin to use new URID extension (http://lv2plug.in/ns/ext/urid/). (deva)
+ - Fix state store so it does not store terminating zero in config xml. (deva)
+ - "No sound" bug in resampler code. See: http://drumgizmo.org/irc-logs/drumgizmo.log.11Jan2015
+ - Make cli wait for drumkit to finish loading before starting the engine. (Jin^eLD)
+ - Make cli TYPE_STOP event wait until active events is empty. (deva)
+ - Add basic man page. (Nils Tonnätt)
+ - Reflect input/output parms in cli help text. (suhr)
+ - Reflect input/output parms in cli man page. (muldjord)
+ - Make resampler depend directly on zita-resampler and make libsamplerate an active opt-in. (suhr)
+ - Include test directory in dist. (suhr)
+ - Don't AC_SUBST zita libs and cflags if not used/detected by configure. (suhr)
+ - Make all use of atof and sprintf("%f") locale independent. (deva)
+ - Fix crash after rendering midi file to wav files via DG cli. (deva)
+ - Remove wavfile.la in output dir. (deva)
+ - Replace obsolete cli -p argument (preload) with -a (async-load) argument. (deva)
+
+Version 0.9.7
+=============
+Released December 7th 2014
+ - Resampling on channel output to match system. (in 'resample' branch) (deva)
+   - Zita on windows, configure lib detection
+   - Add missing resampler unit test files.
+   - Make resample work on VST.
+ - Fix LV2 UI crash on open. (deva)
+ - Global config file. (suhr)
+ - Remember last browse path. (suhr)
+ - Don't show hidden folder in file browser. (suhr)
+ - Lineedit follow marker. (suhr)
+   - LineEdit, scroll when in end on line and arrow right typed.
+   - Remove printf and uncommented code
+
+Version 0.9.6
+=============
+Released September 9th 2014
+ - Editor split out into own project. (deva,suhr)
+ - Integrate VST build into autotools. (deva)
+ - Make 64bit VST binary. (deva)
+ - Accept loading the same kit twice. (deva)
+ - Reduce probability of playing the same sample twice in a row. (deva)
+ - Normalise velocity range (was 0 to hardest sample, now is weakest sample to hardest sample). (deva)
+ - Make sure loading a new kit after another works properly. (muldjord)
+
+Version 0.9.5
+=============
+Released April 27th 2014
+ - Editor changes:
+   - Add stroke power attribute to drumkit xml format. (suhr)
+   - Realtime update of waveform view when dragging fadeout slider. (deva)
+   - Export energy levels to .xml file. (deva)
+   - Clicking hit circles in velocity view selects corresponding in waveform view. (deva)
+   - After selecting a hit by clicking a circle, allow direct deletion using "delete" kbd key. (deva)
+   - Make hits in velocity view dragable. (deva)
+   - Marked selection (ie. its values) is shown as lineedits in "edit" tab, changable by-value. (deva)
+   - Enable multichannel export both for .wav and for .xml. (deva)
+   - Turn volume slider into actual mixer fader instead of sample multiplier. (suhr)
+   - Create filebrowser for selecting export path. (suhr)
+   - Create main config file for saving and loading current values. (suhr)
+   - Make player use fadein/out while playing (controllable through checkbox somewhere?) (deva)
+ - Make engine use version number in order to select velocity algorithms and remove --with-experimental configure parameter. (deva)
+ - Use Atom lv2 midi events. (suhr)
+ - Make jack backend work on all buffer sizes. (deva)
+
+Version 0.9.4
+==============
+Released March 5th 2014
+ - Add multichannel sample support. (John Hammen)
+ - Write README, ChangeLog and AUTHORS files. (deva)
+ - Delete old partially broken unit test system. (deva)
+ - Fix double click on toggle button to not leave the button in its middle state. (deva)
+ - Make plugin gui window fixed in size. (deva)
+ - Fix lineedit mouseclick to the right of the text, which should position text cursor to the right of the text. (unassigned)
+ - Handle sse optimisation toggling in configure.in. (suhr)
+ - Fix memory leak in Image class (png structure currently not free'd). (deva)
+ - Improve FileBrowser functionality. (suhr)
+ -   If filename lineedit is empty and the other one is not, use the non/empty lineedit path initially when opening filebrowser. (deva)
+ -   Make it possible to type a path and have the browser switch accordingly. (suhr)
+ -   Sort list by directories first and files next. (suhr)
+ -   Filter out non-drumkit files. (suhr)
+ -   Identify folders by appending '/' to their names. (suhr)
+ -   Remove double '\\' after drive letter in filebrowser on Windows. (suhr)
+ -   Test new filebrowser on Windows. (suhr)
+ -   Handle directory that can not be opened. (suhr)
+ -   Scrollbar is drawed wrong when few elements in list. (deva)
+ - Refactor GUI::EventHandler. (deva)
+ - Make Carla store plugin setting. (deva)
+ - Make it work in QTractor. (deva)
+ - Add jackaudio output module. (deva)
+ - Support multiple samplerates by resampling at load-time (feature request from Cédric 'SxDx'). (deva)
+ - Modernise autoconf. (deva)
+ - Add new unit test system. (deva)
+ - Find and fix LV2 midi velocities magically disappearing. (suhr) We can't reproduce this. Please contact us if you have this problem.
+
+Version 0.9.3
+==============
+Released on May 7th 2013, ie. LAC 2013 version
+ - Make filebrowser use strings instead of chdir. (suhr)
+ - Set "Creator" in the LV2 config. (deva)
+ - Prevent mouse button up events from propagating after a double click if the window if closed. (deva)
+ - libpng error handling (especially ubuntu libpng version mismatch vs. ardour, 12.49 vs. 1.6). (deva)
+ - Optimise GUI rendering so that it doesn't feel sluggish to work with. (deva)
+ - Fix bug, where the plugin starts using 100% cpu even with no notes playing. (deva)
+ - Make midifile load send load status to GUI. (deva)
+ - Make DrumKitLoader stop loading on plugin deletion and if a new drumkit is being loaded. (deva)
+ - Make listview scrollbar knob work. (deva)
+ - Make "give me all parameter value" message with engine respons for GUI initialisation. (deva)
+ - Make humaniser parameters value set/get work using messages. (deva)
+ - Create GUI::ProgressBar class for use in load feedback. (deva)
+ - Implement engine -> GUI signaling mechanism (for load status, etc). (deva)
+ - Implement GUI -> engine signaling mechanism (reload drumkit, read parameter, etc). (deva)
+ - Make layout engine classes (Painter::Box/Painter::Bar). (deva)
+ - Refactor GUI::Font. (deva)
+ - Design and render as png-pixmaps new fonts. (muldjord)
+ - Design new layout widgets. (muldjord)
+   * Pushbutton
+   * Knob
+   * On/off switch
+   * Lineedit
+   * Combobox
+   * Item view with scrollbars
+ - Implement new layout as a new layout engine. (deva)
+ - Create PNG loader. (deva)
+ - Make GUI::Image class able to use libpng 1.2. (nemo)
+ - Create RC handler (embed PNG images and fonts directly in the binary). (deva)
+ - Make 'instrument group' feature that can stop an open hihat, when a closed hihat is played. (deva)
+ - Check for x11 lib and headers in configure. (deva)
+
+Version 0.9.2 and older (prehistoric)
+=====================================
+Released on March 25th 2013.
+ - Make autotools project.
+ - Make event interface.
+ - Make midi-node -> sample mapping.
+ - Make drumkit xml file format spec.
+ - Make xml reader/parser.
+ - Make alternative audio backends work
+   * ALSA (output)
+   * ALSA Midi (input)
+   * Jack (output)
+   * JackMidi (input)
+   * SndFile (output)
+   * Midifile (input)
+ - Make Win32 port.
+ - Make plugin-able
+   * LV2
+   * VST
+ - Make basic drumkit editor.

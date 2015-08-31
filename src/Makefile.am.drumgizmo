@@ -1,0 +1,30 @@
+DRUMGIZMO_SOURCES = \
+	$(top_srcdir)/src/audioinputenginemidi.cc \
+	$(top_srcdir)/src/audiofile.cc \
+	$(top_srcdir)/src/channel.cc \
+	$(top_srcdir)/src/channelmixer.cc \
+	$(top_srcdir)/src/chresampler.cc \
+	$(top_srcdir)/src/configuration.cc \
+	$(top_srcdir)/src/configparser.cc \
+	$(top_srcdir)/src/drumgizmo.cc \
+	$(top_srcdir)/src/drumkit.cc \
+	$(top_srcdir)/src/drumkitloader.cc \
+	$(top_srcdir)/src/drumkitparser.cc \
+	$(top_srcdir)/src/events.cc \
+	$(top_srcdir)/src/instrument.cc \
+	$(top_srcdir)/src/instrumentparser.cc \
+	$(top_srcdir)/src/messagehandler.cc \
+	$(top_srcdir)/src/messagereceiver.cc \
+	$(top_srcdir)/src/midimapparser.cc \
+	$(top_srcdir)/src/midimapper.cc \
+	$(top_srcdir)/src/mutex.cc \
+	$(top_srcdir)/src/path.cc \
+	$(top_srcdir)/src/powerlist.cc \
+	$(top_srcdir)/src/sample.cc \
+	$(top_srcdir)/src/semaphore.cc \
+	$(top_srcdir)/src/saxparser.cc \
+	$(top_srcdir)/src/thread.cc \
+	$(top_srcdir)/src/velocity.cc \
+	$(top_srcdir)/src/versionstr.cc
+
+DRUMGIZMO_LIBS = $(ZITA_LIBS) $(SNDFILE_LIBS) $(EXPAT_LIBS) $(SAMPLERATE_LIBS)

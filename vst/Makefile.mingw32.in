@@ -1,0 +1,143 @@
+VST_BASE=@VST_SOURCE_PATH@
+VST_SRC_BASE = ${VST_BASE}/public.sdk/source/vst2.x/
+VST_SRC = \
+	${VST_SRC_BASE}/audioeffectx.cpp \
+	${VST_SRC_BASE}/audioeffect.cpp \
+	${VST_SRC_BASE}/vstplugmain.cpp
+VST_CFLAGS=-I$(VST_BASE)
+
+DG_SRC = \
+	@top_srcdir@/src/audioinputenginemidi.cc \
+	@top_srcdir@/src/audiofile.cc \
+	@top_srcdir@/src/channel.cc \
+	@top_srcdir@/src/channelmixer.cc \
+	@top_srcdir@/src/chresampler.cc \
+	@top_srcdir@/src/configuration.cc \
+	@top_srcdir@/src/configparser.cc \
+	@top_srcdir@/src/drumgizmo.cc \
+	@top_srcdir@/src/drumkit.cc \
+	@top_srcdir@/src/drumkitloader.cc \
+	@top_srcdir@/src/drumkitparser.cc \
+	@top_srcdir@/src/events.cc \
+	@top_srcdir@/src/instrument.cc \
+	@top_srcdir@/src/instrumentparser.cc \
+	@top_srcdir@/src/messagehandler.cc \
+	@top_srcdir@/src/messagereceiver.cc \
+	@top_srcdir@/src/midimapparser.cc \
+	@top_srcdir@/src/midimapper.cc \
+	@top_srcdir@/src/mutex.cc \
+	@top_srcdir@/src/path.cc \
+	@top_srcdir@/src/powerlist.cc \
+	@top_srcdir@/src/sample.cc \
+	@top_srcdir@/src/semaphore.cc \
+	@top_srcdir@/src/saxparser.cc \
+	@top_srcdir@/src/thread.cc \
+	@top_srcdir@/src/velocity.cc \
+	@top_srcdir@/src/versionstr.cc
+DG_CFLAGS = -I.. -I../include -I../src -DSSE -msse -msse2 -DDISABLE_HUGIN
+
+GUI_SRC = \
+	@top_srcdir@/plugingui/nativewindow_x11.cc \
+	@top_srcdir@/plugingui/nativewindow_win32.cc \
+	@top_srcdir@/plugingui/plugingui.cc \
+	@top_srcdir@/plugingui/pluginconfig.cc \
+	@top_srcdir@/plugingui/label.cc \
+	@top_srcdir@/plugingui/eventhandler.cc \
+	@top_srcdir@/plugingui/font.cc \
+	@top_srcdir@/plugingui/window.cc \
+	@top_srcdir@/plugingui/widget.cc \
+	@top_srcdir@/plugingui/colour.cc \
+	@top_srcdir@/plugingui/painter.cc \
+	@top_srcdir@/plugingui/button.cc \
+	@top_srcdir@/plugingui/pixelbuffer.cc \
+	@top_srcdir@/plugingui/lineedit.cc \
+	@top_srcdir@/plugingui/led.cc \
+	@top_srcdir@/plugingui/checkbox.cc \
+	@top_srcdir@/plugingui/slider.cc \
+	@top_srcdir@/plugingui/scrollbar.cc \
+	@top_srcdir@/plugingui/listbox.cc \
+	@top_srcdir@/plugingui/listboxthin.cc \
+	@top_srcdir@/plugingui/listboxbasic.cc \
+	@top_srcdir@/plugingui/knob.cc \
+	@top_srcdir@/plugingui/filebrowser.cc \
+	@top_srcdir@/plugingui/directory.cc \
+	@top_srcdir@/plugingui/image.cc \
+	@top_srcdir@/plugingui/combobox.cc \
+	@top_srcdir@/plugingui/progressbar.cc \
+	@top_srcdir@/plugingui/verticalline.cc \
+	@top_srcdir@/plugingui/resource.cc \
+	@top_srcdir@/plugingui/resource_data.cc \
+	@top_srcdir@/plugingui/lodepng/lodepng.cpp
+
+GUI_CFLAGS=-I@top_srcdir@/plugingui/ -DUSE_THREAD @GUI_CFLAGS@
+GUI_LIBS=-lgdi32 -lsetupapi -lws2_32
+
+DBG_SRC = \
+	@top_srcdir@/hugin/hugin.c \
+	@top_srcdir@/hugin/hugin_syslog.c
+
+DBG_CFLAGS=-I../hugin -DWITH_HUG_SYSLOG -DWITH_HUG_MUTEX -DDISABLE_HUGIN
+
+#
+# http://old.nabble.com/using-VC%2B%2B-.lib-with-mingw-td23151303.html
+# Given `-lfoo', the win32 build of GNU ld will search for libfoo.a and foo.lib
+#
+
+EXPAT_CFLAGS=@EXPAT_CFLAGS@
+EXPAT_LIBS=@EXPAT_LIBS@
+ 
+SNDFILE_CFLAGS=@SNDFILE_CFLAGS@
+SNDFILE_LIBS=@SNDFILE_LIBS@
+
+ZLIB_CFLAGS=@ZLIB_CFLAGS@
+ZLIB_LIBS=@ZLIB_LIBS@
+
+SRC_CFLAGS=@SAMPLERATE_CFLAGS@
+SRC_LIBS=@SAMPLERATE_LIBS@
+
+ZITA_CXXFLAGS=@ZITA_CPPFLAGS@
+ZITA_LIBS=@ZITA_LIBS@
+
+SRC = \
+	drumgizmo_vst.cc \
+	input_vst.cc \
+	output_vst.cc
+
+#######################
+#
+#CXXFLAGS=-DWIN32 $(EXPAT_CFLAGS) $(SNDFILE_CFLAGS) $(DG_CFLAGS) $(GUI_CFLAGS) $(DBG_CFLAGS) $(VST_CFLAGS)
+#CFLAGS=$(CXXFLAGS)
+#LDFLAGS=$(EXPAT_LIBS) $(SNDFILE_LIBS) $(GUI_LIBS) $(DBG_LIBS)
+#
+#C_SOURCES=$(DBG_SRC)
+#CXX_SOURCES=$(GUI_SRC) $(DG_SRC)
+#CPP_SOURCES=$(VST_SRC) 
+#
+#OBJECTS=$(CXX_SOURCES:.cc=.o) $(CPP_SOURCES:.cpp=.o) $(C_SOURCES:.c=.o)
+#all: $(CXX_SOURCES) $(CPP_SOURCES) $(C_SOURCES) drumgizmo_vst.dll
+#
+#drumgizmo_vst.dll: $(OBJECTS)
+#	g++ $(CXXFLAGS) $(OBJECTS) $(LDFLAGS) -shared -o drumgizmo_vst.dll -Wl,--out-implib,libdrumgizmo_vst.a
+#
+#%.o: %.cc
+#	g++ -O3 -c $(CXXFLAGS) $(LDFLAGS) $< -o $(notdir $@)
+#
+#%.o: %.cpp
+#	g++ -O3 -c $(CXXFLAGS) $(LDFLAGS) $< -o $(notdir $@)
+#
+#%.o: %.c
+#	gcc -O3 -c $(CFLAGS) $(LDFLAGS) $< -o $@
+#
+#clean:
+#	del -f $(notdir $(OBJECTS)) drumgizmo_vst.dll libdrumgizmo_vst.a
+#
+########################
+
+ 
+all:
+	gcc $(DBG_CFLAGS) @top_srcdir@/hugin/hugin.c -c
+	gcc $(DBG_CFLAGS) @top_srcdir@/hugin/hugin_syslog.c -c
+	g++ -static -static-libgcc -O2 -g -Wall $(DBG_CFLAGS) $(DG_CFLAGS) $(DG_LIBS) $(VST_CFLAGS) hugin.o hugin_syslog.o $(DG_SRC) $(VST_SRC) ${SRC} ${GUI_SRC} ${GUI_CFLAGS} $(GUI_LIBS) $(EXPAT_CFLAGS) $(ZLIB_CFLAGS) $(SRC_CFLAGS) $(ZITA_CXXFLAGS) $(EXPAT_LIBS) $(ZLIB_LIBS) $(SNDFILE_CFLAGS) $(SNDFILE_LIBS) $(SRC_LIBS) $(ZITA_LIBS) -shared -o drumgizmo_vst.dll -Wl,--out-implib,libdrumgizmo_vst.a
+ 
+clean:
+	del -f drumgizmo_vst.dll libdrumgizmo_vst.a

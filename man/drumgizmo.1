@@ -1,0 +1,116 @@
+.TH "DRUMGIZMO" "1" "4 February 2015" "drumgizmo 0.9.7" ""
+
+.SH NAME
+drumgizmo \- drum application
+
+.SH SYNOPSIS
+\fBdrumgizmo\fR [OPTIONS] drumkitfile
+
+.SH "DESCRIPTION"
+.PP
+\fBDrumGizmo\fR is an open source cross-platform drum plugin and stand-alone application. It is comparable to several commercial drum plugin products.
+.PP
+DrumGizmo uses an open drumkit file format, allowing the community to create their own drumkits. It has multichannel output, making it possible to mix it just the way you would a real drumkit. The optional built-in humanizer analyzes the midi notes, adjusting velocities on-the-fly. This client can be a stand-alone midi renderer, generating .wav files, 1 for each channel. Or use DrumGizmo as a software sampler for an electronic drumkit. There are also plugin versions available.
+
+.SH "OPTIONS"
+.PD 0
+.RE
+.RS 7
+\fB-i, --inputengine \fR{dummy|test|jackmidi|midifile}
+.RS 7
+Use said event input engine.
+
+.RE
+\fB-I, --inputparms parmlist\fR
+.RS 7
+Set input engine parameters.
+
+\fBjackmidi:\fR
+.P
+midimap=<midimapfile>
+
+\fBmidifile:\fR
+.P
+file=<midifile>
+.P
+speed=<tempo> (default 1.0)
+.P
+track=<miditrack> (default -1, all tracks)
+.P
+midimap=<midimapfile>
+.P
+loop=<true|false>
+
+\fBtest:\fR
+.P
+p=<hit_propability> (default 0.1)
+.P
+instr=<instrument> (default -1, random instrument)
+.P
+len=<seconds> (default -1, forever)
+
+\fBdummy:\fR
+
+.RE
+\fB-o, --outputengine \fR{dummy|alsa|jackaudio|wavfile}
+.RS 7
+Use said audio output engine.
+
+.RE
+\fB-O, --outputparms parmlist\fR
+.RS 7
+Set output engine parameters.
+
+\fBalsa:\fR
+.P
+dev=<device> (default 'default')
+.P
+frames=<frames> (default 32)
+.P
+srate=<samplerate> (default 44100)
+
+\fBwavfile:\fR
+.P
+file=<filename> (default 'output')
+.P
+srate=<samplerate> (default 44100)
+
+\fBjackaudio:\fR
+
+\fBdummy:\fR
+
+.RE
+\fB-e, --endpos\fR
+.RS 7
+Number of samples to process, (default -1: infinite)
+
+.RE
+\fB-v, --version\fR
+.RS 7
+Print drumgizmo version and exit.
+
+.RE
+\fB-h, --help\fR
+.RS 7
+Print command line help and exit.
+
+.RE
+\fBdrumkitfile\fR
+.RS 7
+Load the drumkitfile.
+
+.RE
+.SH "EXAMPLES"
+\fBRender midifile to wav files:\fR
+.RS 7
+drumgizmo -i midifile -I file=file.mid,midimap=midimap.xml -o wavfile -O file=prefix drumkit.xml
+.RE
+\fBRecieve midi from Jack and send audio output to speakers:\fR
+.RS 7
+drumgizmo -i jackmidi -I midimap=midimap.xml -o jackaudio drumkit.xml
+.RE
+.SH "BUGS"
+Report bugs to http://www.drumgizmo.org/wiki/doku.php?id=bugs.
+
+.SH "ADDITIONAL INFORMATION"
+For further information, visit the website http://www.drumgizmo.org.
