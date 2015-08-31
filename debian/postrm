@@ -1,0 +1,5 @@
+#!/bin/sh
+lv2_plugin_dir=/usr/lib/lv2
+_dirname=${DPKG_MAINTSCRIPT_PACKAGE}.lv2
+_rm=/bin/rm
+$_rm -f ${lv2_plugin_dir}/${_dirname}
