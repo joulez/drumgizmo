@@ -1,0 +1,48 @@
+Source: drumgizmo
+Section: sound
+Priority: optional
+Maintainer: Julian Paul Glass <joules@magemx.com>
+Uploaders:
+ Julian Paul Glass <joules@magemx.com>
+Build-Depends:
+ automake,
+ debhelper (>= 9~),
+ dh-autoreconf,
+ libx11-dev,
+ lv2-dev,
+ libpng12-dev,
+ libsndfile1-dev (>= 1.0.21),
+ libsmf-dev (>= 1.3)
+Homepage: http://www.drumgizmo.org
+Standards-Version: 3.9.6
+Vcs-Git:
+Vcs-Browser:
+
+Package: drumgizmo
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends}
+Recommends:
+Provides:
+ lv2-plugin
+Description: Drum kit sampler
+ DrumGizmo is an open source cross-platform drum plugin and 
+ stand-alone application. It is comparable to several commercial 
+ drum plugin products. 
+ .
+ Features include:
+ Stand-alone, Lv2 and VSTi versions available
+ Open drumkit file format, allowing the community to create their 
+ own drumkits.  
+ Drum velocity, allowing for several different hit velocities for 
+ each drum.
+ Multichannel output, making it possible to mix it just the way 
+ you would a real drumkit.
+ Optional built-in humanizer, analyzing the midi notes, adjusting 
+ velocities on-the-fly.
+ Stand-alone midi renderer, generating .wav files, 1 for each 
+ channel.
+ Stand-alone midi input, making it possible to use DrumGizmo as a 
+ software sampler for an electronic drumkit.
+

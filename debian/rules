@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+export CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+export CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+export CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
+
+DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+
+EXTRA_CONFIGURE_ARGS = \
+ --enable-gui=x11 \
+ --enable-lv2 \
+ --disable-vst \
+ --disable-input-jackmidi \
+ --disable-input-jackaudio 
+
+ifeq ($(DEB_HOST_ARCH_CPU),amd64)
+EXTRA_CONFIGURE_ARGS += --enable-sse
+endif
+
+%:
+	dh $@ --parallel --with autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(EXTRA_CONFIGURE_ARGS)
+

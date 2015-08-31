@@ -1,0 +1,5 @@
+drumgizmo (0.9.8.1-1) unstable; urgency=low
+
+  * Initial Debian package
+
+ -- Julian Paul Glass <joules@magemx.com>  Mon, 31 August 2015 11:15:48 +1000
