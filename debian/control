@@ -14,7 +14,7 @@ Build-Depends:
  libsndfile1-dev (>= 1.0.21),
  libzita-resampler-dev (>= 1.3.0),
  libsmf-dev (>= 1.3),
- libjack-jackd2-dev (>= 0.120.1),
+ libjack-jackd2-dev (>= 0.120.1) | libjack-dev (>= 0.120.1),
 Homepage: http://www.drumgizmo.org
 Standards-Version: 3.9.6
 Vcs-Git:
