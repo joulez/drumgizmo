@@ -24,3 +24,4 @@ endif
 override_dh_auto_configure:
 	dh_auto_configure -- $(EXTRA_CONFIGURE_ARGS)
 
+override_dh_auto_test:
