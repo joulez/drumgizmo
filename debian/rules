@@ -11,6 +11,8 @@ EXTRA_CONFIGURE_ARGS = \
  --enable-gui=x11 \
  --enable-lv2 \
  --disable-vst \
+ --without-test \
+ --without-debug \
  --disable-input-jackmidi \
  --disable-input-jackaudio 
 
