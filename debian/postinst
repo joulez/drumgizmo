@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/env > /tmp/env
