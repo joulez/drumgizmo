@@ -1,4 +1,4 @@
-drumgizmo (0.9.8.1-2) unstable; urgency=low
+drumgizmo (0.9.8.1-2a) unstable; urgency=low
 
   * Force target directory
   * Remove postinst/postrm scripts
