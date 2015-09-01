@@ -8,6 +8,7 @@ export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
 EXTRA_CONFIGURE_ARGS = \
+ --libdir=/usr/lib \
  --enable-gui=x11 \
  --enable-lv2 \
  --disable-vst \
