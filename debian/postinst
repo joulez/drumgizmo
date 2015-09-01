@@ -1,7 +1,0 @@
-#!/bin/sh
-lv2_plugin_dir=/usr/lib/lv2
-_dirname=${DPKG_MAINTSCRIPT_PACKAGE}.lv2
-arch_dir=/usr/lib/x86_64-linux-gnu/lv2
-ln=/bin/ln
-
-$ln -sf ${arch_dir}/${_dirname} -t ${lv2_plugin_dir}

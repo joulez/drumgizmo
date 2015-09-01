@@ -1,5 +1,12 @@
 drumgizmo (0.9.8.1-2) unstable; urgency=low
 
+  * Force target directory
+  * Remove postinst/postrm scripts
+
+ -- Julian Paul Glass <joules@magemx.com>  Mon, 01 September 2015 10:15:32 +1000
+
+drumgizmo (0.9.8.1-2) unstable; urgency=low
+
   * Post install configuration. Symlink to /usr/lib/lv2
 
  -- Julian Paul Glass <joules@magemx.com>  Mon, 31 August 2015 14:37:21 +1000
